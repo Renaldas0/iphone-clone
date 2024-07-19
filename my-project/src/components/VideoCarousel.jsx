@@ -31,9 +31,9 @@ const VideoCarousel = () => {
         })
 
         gsap.to("#video", {
-            ScrollTrigger: {
+            scrollTrigger: {
                 trigger: "#video",
-                toggleActions: "restart none none none"
+                toggleActions: "restart none none none",
             },
             onComplete: () => {
                 setVideo((pre) => ({
