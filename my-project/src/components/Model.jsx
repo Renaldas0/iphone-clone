@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { models, sizes } from '../constants';
 
@@ -31,6 +31,18 @@ const Model = () => {
     // rotation
     const [smallRotation, setSmallRotation] = useState(0);
     const [largeRotation, setLargeRotation] = useState(0);
+
+    const tl = gsap.timeline();
+
+    useEffect(() => {
+        if (size === 'large') {
+
+        }
+
+        if (size === 'small') {
+
+        }
+    }, [size])
 
     useGSAP(() => {
         gsap.to("#heading", {
