@@ -2,7 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { hightlightsSlides } from "../constants"
 
 import gsap from 'gsap';
-import { useGSAP } from "@gsap/react"
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
 import { pauseImg, playImg, replayImg } from '../utils';
 
 const VideoCarousel = () => {
@@ -40,23 +42,12 @@ const VideoCarousel = () => {
                     ...pre,
                     startPlay: true,
                     isPlaying: true,
-                }))
-            }
-        }
-        )
+                }));
+            },
+        });
     }, [isEnd, videoId])
 
-    useEffect(() => {
-        if (loadedData.length > 3) {
-            if (!isPlaying) {
-                videoRef.current[videoId].pause();
-            } else {
-                startPlay && videoRef.current[videoId].play();
-            }
-        }
-    }, [startPlay, videoId, loadedData, isPlaying])
 
-    const handleLoadedMetaData = (i, e) => setLoadedData((pre) => [...pre, e])
 
     useEffect(() => {
         let currentProgress = 0;
@@ -72,7 +63,12 @@ const VideoCarousel = () => {
                         currentProgress = progress
 
                         gsap.to(videoDivRef.current[videoId], {
-                            width: window.innerWidth < 760 ? "10vw" : window.innerWidth < 1200 ? "10vw" : "4vw"
+                            width:
+                                window.innerWidth < 760
+                                    ? "10vw"
+                                    : window.innerWidth < 1200
+                                        ? "10vw"
+                                        : "4vw"
                         })
 
                         gsap.to(span[videoId], {
@@ -108,7 +104,17 @@ const VideoCarousel = () => {
                 gsap.ticker.remove(animUpdate)
             }
         }
-    }, [videoId, startPlay])
+    }, [videoId, startPlay]);
+
+    useEffect(() => {
+        if (loadedData.length > 3) {
+            if (!isPlaying) {
+                videoRef.current[videoId].pause();
+            } else {
+                startPlay && videoRef.current[videoId].play();
+            }
+        }
+    }, [startPlay, videoId, loadedData, isPlaying])
 
     const handleProcess = (type, i) => {
         switch (type) {
@@ -137,7 +143,9 @@ const VideoCarousel = () => {
             default:
                 return video;
         }
-    }
+    };
+
+    const handleLoadedMetaData = (i, e) => setLoadedData((pre) => [...pre, e])
 
     return (
         <>

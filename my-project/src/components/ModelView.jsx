@@ -3,7 +3,6 @@ import Lights from "./Lights"
 import { Suspense } from "react"
 import Iphone from "./Iphone"
 import Loader from "./Loader"
-import { Html } from "@react-three/drei"
 import * as THREE from 'three'
 
 const ModelView = ({ index, groupRef, gsapType, controlRef, setRotationState, size, item }) => {
