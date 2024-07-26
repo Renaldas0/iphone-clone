@@ -72,6 +72,7 @@ const Features = () => {
                                     <img src={explore2Img} alt="Titanium 2" className='feature-video g_grow' />
                                 </div>
                             </div>
+
                             <div className='feature-text-container'>
                                 <div className="flex-1 flex-center">
                                     <p className='feature-text g_text'>
@@ -92,8 +93,8 @@ const Features = () => {
                                         You'll notice the difference the moment you pick one up.
                                     </p>
                                 </div>
-
                             </div>
+
                         </div>
                     </div>
                 </div>
